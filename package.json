@@ -1,0 +1,30 @@
+{
+  "name": "api_node_postgres",
+  "version": "1.0.0",
+  "description": "APIREST CON NODEJS Y BASE DE DATOS POSTGRESQL",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edgmuo1085/node_api_postgres.git"
+  },
+  "keywords": [
+    "api",
+    "nodejs",
+    "postgres"
+  ],
+  "author": "Edgar Muñoz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/edgmuo1085/node_api_postgres/issues"
+  },
+  "homepage": "https://github.com/edgmuo1085/node_api_postgres#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1",
+    "pg": "^7.11.0"
+  }
+}
