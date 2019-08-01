@@ -2,11 +2,45 @@ const Pool = require('pg').Pool
 const pool = new Pool({
 	user: 'postgres',
 	host: 'localhost',
-	database: 'api',
+	database: 'congresouse2',
 	password: '123456',
-	port: 5432,
+	port: 5433,
 });
 
+const getLlaves = (request, response) => {
+	const { name, key } = request.body
+	pool.query('SELECT public.key_foreign($1, $2)', [name, key], (error, results) => {
+		if (error) { throw error }
+		response.status(200).json(results.rows)
+	})
+};
+
+const getLlaves2 = (request, response) => {
+	//const { hechos, mesure, dimension, filters, filtersM } = request.body
+	pool.query('SELECT * FROM cubo_olap;', (error, results) => {
+		if (error) { throw error }
+		response.status(200).json(results.rows)
+	})
+};
+
+const getJoinsParams = (request, response) => {
+	const { name } = request.body
+	pool.query('SELECT public.joins_params($1)', [name], (error, results) => {
+		if (error) { throw error }
+		response.status(200).json(results.rows)
+	})
+};
+
+const getAttrib = (request, response) => {
+	const { name } = request.body
+	pool.query('SELECT public.attrib_params($1)', [name], (error, results) => {
+		if (error) { throw error }
+		response.status(200).json(results.rows)
+	})
+};
+
+
+/*
 const getUsers = (request, response) => {
 	pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
 		if (error) { throw error }
@@ -28,7 +62,8 @@ const createUser = (request, response) => {
 
 	pool.query('INSERT INTO users (name, email) VALUES ($1, $2)', [name, email], (error, results) => {
 		if (error) { throw error }
-		response.status(201).send(`User added with ID: ${results[1]}`)
+		response.status(201).send(`User added with ID: ${pool.insertId}`);
+		console.error("crear usuario: ", pool);
 	})
 };
 
@@ -52,11 +87,15 @@ const deleteUser = (request, response) => {
 		response.status(200).send(`User deleted with ID: ${id}`)
 	})
 };
-
+*/
 module.exports = {
+	getLlaves,
+	getLlaves2,
+	getAttrib,
+	getJoinsParams/*,
 	getUsers,
 	getUserById,
 	createUser,
 	updateUser,
-	deleteUser,
+	deleteUser,*/
 };
