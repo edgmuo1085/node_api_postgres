@@ -4,5 +4,6 @@ module.exports = {
 	database: 'congresouse2',
 	password: '123456',
 	port: 5433,
-	portApi: process.env.PORT || 8080
+	portApi: process.env.PORT || 8080,
+	SECRET_TOKEN: 'estaesmifrasedeencriptacion'
 }
