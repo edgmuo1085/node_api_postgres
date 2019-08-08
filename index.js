@@ -1,24 +1,11 @@
-"use strict";
+'use strict'
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
-const db = require('./queries');
-const port = process.env.PORT || 8080;
+const app = require('./app');
 
-app.use(bodyParser.json());
-app.use(
-	bodyParser.urlencoded({
-		extended: true,
-	})
-);
+const config = require('./config');
 
-app.get('/', (request, response) => {
-	response.json({ info: 'Node.js, Express, and Postgres API' })
-});
-
-app.get('/olap', db.getQueryOlap);
-
-app.listen(port, () => {
-	console.log(`App running on port http://localhost:${port}.`)
+app.listen(config.portApi, () => {
+	console.log(`App running on port http://localhost:${config.portApi}.`)
 });

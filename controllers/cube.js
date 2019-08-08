@@ -1,10 +1,14 @@
+'use strict'
+
+const db = require('../config');
+
 const Pool = require('pg').Pool
 const pool = new Pool({
-	user: 'postgres',
-	host: 'localhost',
-	database: 'congresouse2',
-	password: '123456',
-	port: 5433,
+	user: db.user,
+	host: db.host,
+	database: db.database,
+	password: db.password,
+	port: db.port,
 });
 
 const getQueryOlap = (request, response) => {
