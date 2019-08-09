@@ -8,6 +8,6 @@ const api = require('./routes');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use('', api);
+app.use('api/v1/', api);
 
 module.exports = app
