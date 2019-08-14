@@ -5,7 +5,7 @@ const cubeCtrl = require('../controllers/cube');
 const auth = require('../middleware/auth');
 const api = express.Router();
 
-api.get('/olap', cubeCtrl.getQueryOlap);
+api.post('/olap', cubeCtrl.postQueryOlap);
 api.post('/private', cubeCtrl.postDato);
 //
 api.get('/users', cubeCtrl.getUsers);

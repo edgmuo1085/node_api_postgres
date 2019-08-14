@@ -12,12 +12,12 @@ const pool = new Pool({
 	port: db.port,
 });
 
-const getQueryOlap = (req, res) => {
+const postQueryOlap = (req, res) => {
 	const { query_olap } = req.body
 	pool.query('SELECT public.consulta_olap($1)', [query_olap], (error, results) => {
 		if (error) { throw error }
 		res.status(200).json(results.rows)
-		console.log("query_olap: ", results.rows)
+		//console.log("query_olap: ", results.rows)
 	});
 };
 
@@ -28,14 +28,14 @@ const getIndex = (req, res) => {
 const postDato = (req, res) => {
 	const id = req.body.id
 	res.status(200).send({ token: service.createToken(id) })
-	console.log("Usuario: ", id)
+	//console.log("Usuario: ", id)
 };
 
 const getUsers = (request, response) => {
 	pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
 		if (error) { throw error }
 		response.status(200).json(results.rows)
-		console.log("Todos: ",results.rows)
+		//console.log("Todos: ",results.rows)
 	})
 };
 
@@ -45,7 +45,7 @@ const getUserById = (request, response) => {
 	pool.query('SELECT * FROM users WHERE id = $1', [id], (error, results) => {
 		if (error) { throw error }
 		response.status(200).json(results.rows)
-		console.log("Usuario: ", id)
+		//console.log("Usuario: ", id)
 	})
 };
 
@@ -55,7 +55,7 @@ const createUser = (request, response) => {
 	pool.query('INSERT INTO users (name, email) VALUES ($1, $2)', [name, email], (error, results) => {
 		if (error) { throw error }
 		response.status(201).json(pool.options);
-		console.error("Crear usuario: ", pool.options);
+		//console.error("Crear usuario: ", pool.options);
 	})
 };
 
@@ -67,7 +67,7 @@ const updateUser = (request, response) => {
 		(error, results) => {
 			if (error) { throw error }
 			response.status(200).send(`User modified with ID: ${id}`)
-			console.error("Usuario modificado: ", id);
+			//console.error("Usuario modificado: ", id);
 		}
 	)
 };
@@ -78,12 +78,12 @@ const deleteUser = (request, response) => {
 	pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
 		if (error) { throw error }
 		response.status(200).send(`User deleted with ID: ${id}`)
-		console.error("Usuario eliminado: ", id);
+		//console.error("Usuario eliminado: ", id);
 	})
 };
 
 module.exports = {
-	getQueryOlap,
+	postQueryOlap,
 	getIndex,
 	postDato,
 	getUsers,
