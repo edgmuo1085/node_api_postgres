@@ -7,6 +7,4 @@ module.exports = {
   port: 5432,
   portApi: process.env.PORT || 8080,
   SECRET_TOKEN: "estaesmifrasedeencriptacion",
-  accessTokenSid: "ACcd668d3f777cf02affe6e9cf79b61c07",
-  authTokenSid: "e89e86ba9c0be1c6dde9fb4d94a84274",
 };
