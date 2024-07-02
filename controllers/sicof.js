@@ -12,7 +12,7 @@ const pool = new Pool({
 });
 
 const getIndex = (request, response) => {
-  response.status(200).send({ message: "API Node.js, Express, and Postgres" });
+  response.status(200).send({ message: "API Node.js, Express, and Postgres." });
 };
 
 const getAppVersion = (request, response) => {
