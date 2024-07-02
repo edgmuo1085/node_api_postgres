@@ -1,4 +1,4 @@
-module.exports = {
+/* module.exports = {
   user: "ue9dlc8pc0d7s3",
   host: "ccpa7stkruda3o.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com",
   database: "dd2govv6eicnbv",
@@ -6,8 +6,8 @@ module.exports = {
   port: 5432,
   portApi: process.env.PORT || 8080,
   SECRET_TOKEN: "estaesmifrasedeencriptacion",
-};
-/* 
+}; */
+
 module.exports = {
   user: "postgres",
   host: "localhost",
@@ -17,4 +17,3 @@ module.exports = {
   portApi: process.env.PORT || 8080,
   SECRET_TOKEN: "estaesmifrasedeencriptacion",
 };
- */

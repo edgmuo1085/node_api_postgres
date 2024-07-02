@@ -17,7 +17,7 @@ const getIndex = (request, response) => {
 
 const getAppVersion = (request, response) => {
   pool.query(
-    'select vas.* from "VERSION_APP_SICOF" vas order by vas."ID" DESC LIMIT 1',
+    'SELECT * from "VERSION_APP_SICOF" order by "ID" DESC LIMIT 1',
     (error, results) => {
       if (error) {
         throw error;
