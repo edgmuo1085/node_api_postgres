@@ -1,6 +1,5 @@
 "use strict";
 
-const service = require("../services");
 const db = require("../config");
 
 const Pool = require("pg").Pool;
@@ -12,24 +11,52 @@ const pool = new Pool({
   port: db.port,
 });
 
-const getIndex = (req, res) => {
-  res.status(200).send({ message: "API Node.js, Express, and Postgres" });
+const getIndex = (request, response) => {
+  response.status(200).send({ message: "API Node.js, Express, and Postgres" });
 };
 
-const getUserById = (request, response) => {
-  res.status(200).send({ message: "API Node.js, Express, and Postgres" });
-  /* const id = parseInt(request.params.id);
+const getAppVersion = (request, response) => {
+  pool.query(
+    'select vas.* from "VERSION_APP_SICOF" vas order by vas."ID" DESC LIMIT 1',
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
 
-  pool.query("SELECT * FROM users WHERE id = $1", [id], (error, results) => {
-    if (error) {
-      throw error;
+      if (!results.rows.length) {
+        response.status(200).json(results.rows);
+        return;
+      }
+      let versionAppObject = [];
+      results.rows.forEach((item) => {
+        versionAppObject.push({
+          id: item.ID,
+          versionApp: item.VERSION_APP,
+          creationDate: item.CREATION_DATE,
+        });
+      });
+      response.status(200).json(versionAppObject);
     }
-    response.status(200).json(results.rows);
-    //console.log("Usuario: ", id)
-  }); */
+  );
+};
+
+const setAppVersion = (request, response) => {
+  const { version } = request.body;
+
+  pool.query(
+    'insert into public."VERSION_APP_SICOF" ("VERSION_APP") values($1)',
+    [version],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(201).send(`version added: ${version}`);
+    }
+  );
 };
 
 module.exports = {
   getIndex,
-  getUserById,
+  getAppVersion,
+  setAppVersion,
 };
